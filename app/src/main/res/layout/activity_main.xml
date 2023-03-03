@@ -4,6 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.home.HomeActivity">
+    android:background="@color/semigray"
+    tools:context=".ui.MainActivity">
+
+    <include
+        android:id="@+id/content"
+        layout="@layout/content_main"
+
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
