@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <com.makeramen.roundedimageview.RoundedImageView
+        android:id="@+id/image"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="10dp"
+        android:layout_width="100dp"
+        android:layout_height="180dp"
+        android:scaleType="centerCrop"
+        app:riv_corner_radius="12dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@tools:sample/avatars"
+        />
+
+    <ImageView
+        android:id="@+id/stars"
+        android:layout_width="70dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="15dp"
+        app:layout_constraintStart_toEndOf="@id/image"
+        app:layout_constraintTop_toTopOf="@id/image"
+        android:src="@drawable/star"
+        />
+
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="0dp"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        tools:text="ffffffffffffffffffffffffff"
+        android:textColor="@color/main_color"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="5dp"
+        app:layout_constraintStart_toEndOf="@id/image"
+        app:layout_constraintTop_toBottomOf="@id/stars"
+        />
+    <TextView
+        android:id="@+id/auther"
+        android:layout_width="0dp"
+        android:textSize="10sp"
+        tools:text="ffffffffffffffffffffffffff"
+        android:textColor="@color/gray"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
+        app:layout_constraintStart_toEndOf="@id/image"
+        app:layout_constraintTop_toBottomOf="@id/title"
+        />
+
+
+    <TextView
+        android:id="@+id/time"
+        android:textStyle="bold"
+        android:layout_width="0dp"
+        android:textSize="14sp"
+        tools:text="ffffffffffffffffffffffffff"
+        android:textColor="@color/main_color"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toEndOf="@id/image"
+        app:layout_constraintTop_toBottomOf="@id/auther"
+        />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

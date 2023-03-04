@@ -2,17 +2,11 @@ package com.example.workspace.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import com.example.workspace.R
-import com.example.workspace.api.model.ApiManager
-import com.example.workspace.api.model.SourcesResponse
 import com.example.workspace.databinding.ActivityMainBinding
 import com.example.workspace.ui.home.HomeFragment
 import com.example.workspace.ui.location.LocationFragment
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {
 

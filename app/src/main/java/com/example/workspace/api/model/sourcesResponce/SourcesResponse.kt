@@ -1,4 +1,4 @@
-package com.example.workspace.api.model
+package com.example.workspace.api.model.sourcesResponce
 
 import com.google.gson.annotations.SerializedName
 

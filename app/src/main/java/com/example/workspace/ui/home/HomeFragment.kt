@@ -5,13 +5,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import androidx.core.view.isVisible
 import com.example.workspace.R
 import com.example.workspace.api.model.ApiConstant
 import com.example.workspace.api.model.ApiManager
-import com.example.workspace.api.model.Source
-import com.example.workspace.api.model.SourcesResponse
+import com.example.workspace.api.model.sourcesResponce.Source
+import com.example.workspace.api.model.sourcesResponce.SourcesResponse
 import com.example.workspace.databinding.FragmentHomeBinding
+import com.example.workspace.ui.workspaces.WorkpsacesFragment
+import com.google.android.material.tabs.TabLayout
 import com.google.gson.Gson
 import retrofit2.Call
 import retrofit2.Callback
@@ -33,6 +36,14 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
          loadWorkspacesSource()
 
+
+    }
+
+    fun  changeWorkspaceFragment(source: Source){
+        childFragmentManager
+            .beginTransaction()
+            .replace(R.id.fragment_container,WorkpsacesFragment.getInstance(source))
+            .commit()
     }
 
     private fun loadWorkspacesSource() {
@@ -52,8 +63,8 @@ class HomeFragment : Fragment() {
                         bindSourcesInTabLayout(response.body()?.sources)
                     }else{
                         val gson = Gson()
-                        val errorResponse =
-                        gson.fromJson( response.errorBody()?.string(),SourcesResponse::class.java)
+                         val errorResponse =
+                         gson.fromJson( response.errorBody()?.string(), SourcesResponse::class.java)
                           showErrorLayout(errorResponse.message)
                     }
 
@@ -85,11 +96,41 @@ class HomeFragment : Fragment() {
 
          sourcesList?.forEach{ source ->
           val tab = viewBinding.tabLayout.newTab()
+
+
+
           tab.text = source?.name
+             tab.tag =source
+             //tab.setTag(source)
           viewBinding.tabLayout.addTab(tab)
+             val layoutParams = LinearLayout.LayoutParams(tab.view.layoutParams)
+             layoutParams.marginEnd=12
+             layoutParams.marginStart=12
+             layoutParams.topMargin=22
+             tab.view.layoutParams =layoutParams
 
          }
 
+        viewBinding.tabLayout
+            .addOnTabSelectedListener(object :TabLayout.OnTabSelectedListener{
+                override fun onTabSelected(tab: TabLayout.Tab?) {
+                   val source  = tab?.tag as Source
+                    changeWorkspaceFragment(source)
+                }
+
+                override fun onTabUnselected(tab: TabLayout.Tab?) {
+
+
+                }
+
+                override fun onTabReselected(tab: TabLayout.Tab?) {
+                    val source  = tab?.tag as Source
+                    changeWorkspaceFragment(source)
+
+                }
+
+
+            })
 
 
     }
