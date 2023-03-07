@@ -9,7 +9,7 @@ import com.example.workspace.api.model.workspacesResponce.Workspaces
 import com.example.workspace.databinding.ItemWorkspaceBinding
 
 class WorkSpaceAdapter(var items:List<Workspaces?>?):RecyclerView.Adapter<WorkSpaceAdapter.ViewHolder>() {
-
+    var onClickListener : OnClickListener?=null
     class ViewHolder(val viewBinding:ItemWorkspaceBinding)
         :RecyclerView.ViewHolder(viewBinding.root)
 
@@ -31,7 +31,9 @@ class WorkSpaceAdapter(var items:List<Workspaces?>?):RecyclerView.Adapter<WorkSp
             .placeholder(R.drawable.ic_image)
             .into(holder.viewBinding.image)
 
-
+       holder.itemView.setOnClickListener{
+           onClickListener?.onWorkspaceClick(item!!)
+       }
 
 
     }
@@ -42,6 +44,8 @@ class WorkSpaceAdapter(var items:List<Workspaces?>?):RecyclerView.Adapter<WorkSp
         notifyDataSetChanged()
 
     }
-
+     interface OnClickListener{
+    fun onWorkspaceClick(workspaces: Workspaces)
+}
 
 }

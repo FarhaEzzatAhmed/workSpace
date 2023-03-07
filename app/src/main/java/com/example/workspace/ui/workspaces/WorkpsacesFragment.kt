@@ -1,5 +1,6 @@
 package com.example.workspace.ui.workspaces
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +14,7 @@ import com.example.workspace.api.model.sourcesResponce.SourcesResponse
 import com.example.workspace.api.model.workspacesResponce.Workspaces
 import com.example.workspace.api.model.workspacesResponce.WorkspacesResoonce
 import com.example.workspace.databinding.FragmentWorkspacesBinding
+import com.example.workspace.ui.workspaceDetails.WorkspaceDetailsActivity
 import com.google.gson.Gson
 import retrofit2.Call
 import retrofit2.Callback
@@ -54,6 +56,20 @@ class WorkpsacesFragment :Fragment() {
     val workspacesAdapter = WorkSpaceAdapter(null)
     private fun initRecyclerView() {
         viewBinding.workspaceRecycler.adapter =workspacesAdapter
+        workspacesAdapter.onClickListener =object :WorkSpaceAdapter.OnClickListener{
+            override fun onWorkspaceClick(workspaces: Workspaces) {
+                val intent = Intent(requireContext(),WorkspaceDetailsActivity::class.java).apply {
+                    putExtra("workspaceName",workspaces.title)
+                    putExtra("workspaceImage",workspaces.urlToImage)
+                }
+                startActivity(intent)
+
+            }
+
+
+        }
+
+
 
     }
 
@@ -91,8 +107,8 @@ class WorkpsacesFragment :Fragment() {
 
     private fun bindWorkspaceList(articles: List<Workspaces?>?) {
         //show Workspaces in Recycler view
-        viewBinding.loddingIndicator.isVisible = false
-        viewBinding.errorLayout.isVisible=false
+         viewBinding.loddingIndicator.isVisible = false
+         viewBinding.errorLayout.isVisible=false
           workspacesAdapter.changeData(articles)
 
 
